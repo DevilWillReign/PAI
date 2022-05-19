@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <th>Nr</th>
+        <th>Name</th>
+        <% if (completed) { %>
+            <th>Status</th>
+        <% } else { %>
+            <th>Start date</th>
+            <th>End date</th>
+        <% } %>
+    </tr>
+    <% for (var i = 0; i < data.length; i++) { %>
+    <tr>
+        <td><%= data[i].itt_id %></td>
+        <td><a href="/itts/<%=data[i].itt_id %>"><%= data[i].itt_name %></a></td>
+        <% if (completed) { %>
+            <td>ended</td>
+        <% } else { %>
+            <td><%= data[i].start_date %></td>
+            <td><%= data[i].end_date %></td>
+        <% } %>
+    </tr>
+    <% } %>
+</table>

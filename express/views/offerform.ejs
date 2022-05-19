@@ -1,0 +1,8 @@
+<form method="post" action="/offers/">
+    <label>Institution Name:</label>
+    <input name="institution_name" type="text" /><br />
+    <label>Offer Value:</label>
+    <input name="offer_value" type="number" min="1" /><br />
+    <input name="itt_id" value="<%= itt_id %>" hidden="hidden" />
+    <input type="submit" value="Add Offer" />
+</form>
