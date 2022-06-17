@@ -3,13 +3,13 @@ var router = express.Router();
 var db = require("../services/db")
 
 router.get("/", (req, res) => {
-    db.query("SELECT itt_id,itt_name,start_date,end_date FROM itts WHERE strftime('%s', end_date) < datetime('now')", {}, (rows) => {
+    db.query("SELECT itt_id,itt_name,start_date,end_date FROM itts WHERE strftime('%s', end_date) >= strftime('%s', datetime('now', 'localtime'));", {}, (rows) => {
         res.render("layout", { data: rows, completed: false, content: "ittlist", title: "ITT List" })
     })
 })
 
 router.get("/completed", (req, res) => {
-    db.query("SELECT itt_id,itt_name,start_date,end_date FROM itts WHERE strftime('%s', end_date) >= datetime('now');", {}, (rows) => {
+    db.query("SELECT itt_id,itt_name,start_date,end_date FROM itts WHERE strftime('%s', end_date) < strftime('%s', datetime('now', 'localtime'));", {}, (rows) => {
         res.render("layout", { data: rows, completed: true, content: "ittlist", title: "ITT Completed List" })
     })
 })

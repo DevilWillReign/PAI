@@ -12,7 +12,11 @@
     <% for (var i = 0; i < data.length; i++) { %>
     <tr>
         <td><%= data[i].itt_id %></td>
-        <td><a href="/itts/<%=data[i].itt_id %>"><%= data[i].itt_name %></a></td>
+        <% if (Date.now() < new Date(data[i].start_date)) { %>
+            <td><%= data[i].itt_name %></td>
+        <% } else { %>
+            <td><a href="/itts/<%=data[i].itt_id %>"><%= data[i].itt_name %></a></td>
+        <% } %>
         <% if (completed) { %>
             <td>ended</td>
         <% } else { %>
